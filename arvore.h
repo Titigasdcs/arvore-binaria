@@ -17,6 +17,9 @@ void inOrder(Arvore t);
 void preOrder(Arvore t);
 void posOrder(Arvore t);
 
+int Contar_nos(Arvore t);
+int Contar_folhas(Arvore t);
+
 // ---------------------------
 // Implementações
 // ---------------------------
@@ -72,5 +75,29 @@ void posOrder(Arvore t)
         printf("%c", t->dado);
     }
 }
+
+// Função para contar nós
+int Contar_nos(Arvore t)
+{
+    if (t == NULL)
+        return 0;
+
+    return 1 + Contar_nos(t->esq) + Contar_nos(t->dir);
+}
+
+// Função para contar folhas
+int Contar_folhas(Arvore t)
+{
+    if (t == NULL)
+        return 0;
+
+    // Se é folha
+    if (t->esq == NULL && t->dir == NULL)
+        return 1;
+
+    // Caso contrário soma folhas das subárvores
+    return Contar_folhas(t->esq) + Contar_folhas(t->dir);
+}
+
 
 #endif
