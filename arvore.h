@@ -99,5 +99,14 @@ int Contar_folhas(Arvore t)
     return Contar_folhas(t->esq) + Contar_folhas(t->dir);
 }
 
+int Contar_Filhos_Direita(Arvore t){
+    if(t == NULL)
+        return 0;
+
+        if(t->dir !=NULL)
+            return 1 + Contar_Filhos_Direita(t->dir);
+        else
+            return Contar_Filhos_Direita(t->esq);
+}
 
 #endif

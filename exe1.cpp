@@ -28,6 +28,7 @@ int main()
 
     printf("\nTotal de Nos: %d\n",Contar_nos(A));
     printf("\nTotal de folhas: %d\n",Contar_folhas(A));
+    printf("\nTotal de filhos a direita: %d\n",Contar_Filhos_Direita(A));
 
     printf("\n");
 
