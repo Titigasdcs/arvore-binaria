@@ -109,4 +109,39 @@ int Contar_Filhos_Direita(Arvore t){
             return Contar_Filhos_Direita(t->esq);
 }
 
+void Nos_Duas_Subarvores(Arvore t)
+{
+    if (t == NULL)
+        return;
+
+    if (t->esq != NULL && t->dir != NULL)
+        printf("%c ", t->dado);
+
+    Nos_Duas_Subarvores(t->esq);
+    Nos_Duas_Subarvores(t->dir);
+
+    // ele vê um nó em duas subarvores apenas verificando esq e direita
+}
+
+void Nos_Uma_Subarvores(Arvore t){
+    if(t==NULL)
+        return;
+         if((t->esq != NULL && t->dir == NULL) || (t->esq == NULL && t-> dir !=NULL))
+            printf("%c ", t->dado);
+    Nos_Uma_Subarvores(t->esq);
+    Nos_Uma_Subarvores(t->dir);
+}
+
+void Exibir_folhas(Arvore t){
+    if (t == NULL)
+        return;
+
+    if (t->esq == NULL && t->dir == NULL)
+        printf("%c ", t->dado);
+
+    Exibir_folhas(t->esq);
+    Exibir_folhas(t->dir);
+}
+
+
 #endif
