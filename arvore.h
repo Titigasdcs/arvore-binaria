@@ -9,139 +9,35 @@ struct no {
     struct no *dir;
     char dado;
 };
+typedef struct no* Arvore;
 
-typedef struct no *Arvore;
+void preOrder(Arvore t);
+void inOrder(Arvore t);
+void posOrder(Arvore t);
 
 void insertNode(Arvore *t, char d);
-void inOrder(Arvore t);
-void preOrder(Arvore t);
-void posOrder(Arvore t);
+struct no* Pesquisa(Arvore t, char d);
 
 int Contar_nos(Arvore t);
 int Contar_folhas(Arvore t);
+int Contar_Filhos_Direita(Arvore t);
+void Nos_Duas_Subarvores(Arvore t);
+void Nos_Uma_Subarvores(Arvore t);
+void Exibir_folhas(Arvore t);
 
-// ---------------------------
-// Implementações
-// ---------------------------
+void Exibir_Filhos(char d, Arvore t);
+void Exibir_SubEsq(char d, Arvore t);
+int Iguais(Arvore A, Arvore B);
+char Menor(Arvore t);
+struct no* Sucessor(Arvore t, char d);
 
-void insertNode(Arvore *t, char d)
-{
-    if (*t == NULL)
-    {
-        *t = (struct no*) malloc(sizeof(struct no));
-        if (*t != NULL)
-        {
-            (*t)->esq = NULL;
-            (*t)->dir = NULL;
-            (*t)->dado = d;
-        }
-        else
-            printf("Memoria insuficiente");
-    }
-    else if (d < (*t)->dado)
-        insertNode(&(*t)->esq, d);
-    else if (d > (*t)->dado)
-        insertNode(&(*t)->dir, d);
-    else
-        printf("Duplicação de no\n");
-}
-
-void preOrder(Arvore t)
-{
-    if (t != NULL)
-    {
-        printf("%c", t->dado);
-        preOrder(t->esq);
-        preOrder(t->dir);
-    }
-}
-
-void inOrder(Arvore t)
-{
-    if (t != NULL)
-    {
-        inOrder(t->esq);
-        printf("%c", t->dado);
-        inOrder(t->dir);
-    }
-}
-
-void posOrder(Arvore t)
-{
-    if (t != NULL)
-    {
-        posOrder(t->esq);
-        posOrder(t->dir);
-        printf("%c", t->dado);
-    }
-}
-
-// Função para contar nós
-int Contar_nos(Arvore t)
-{
-    if (t == NULL)
-        return 0;
-
-    return 1 + Contar_nos(t->esq) + Contar_nos(t->dir);
-}
-
-// Função para contar folhas
-int Contar_folhas(Arvore t)
-{
-    if (t == NULL)
-        return 0;
-
-    // Se é folha
-    if (t->esq == NULL && t->dir == NULL)
-        return 1;
-
-    // Caso contrário soma folhas das subárvores
-    return Contar_folhas(t->esq) + Contar_folhas(t->dir);
-}
-
-int Contar_Filhos_Direita(Arvore t){
-    if(t == NULL)
-        return 0;
-
-        if(t->dir !=NULL)
-            return 1 + Contar_Filhos_Direita(t->dir);
-        else
-            return Contar_Filhos_Direita(t->esq);
-}
-
-void Nos_Duas_Subarvores(Arvore t)
-{
-    if (t == NULL)
-        return;
-
-    if (t->esq != NULL && t->dir != NULL)
-        printf("%c ", t->dado);
-
-    Nos_Duas_Subarvores(t->esq);
-    Nos_Duas_Subarvores(t->dir);
-
-    // ele vê um nó em duas subarvores apenas verificando esq e direita
-}
-
-void Nos_Uma_Subarvores(Arvore t){
-    if(t==NULL)
-        return;
-         if((t->esq != NULL && t->dir == NULL) || (t->esq == NULL && t-> dir !=NULL))
-            printf("%c ", t->dado);
-    Nos_Uma_Subarvores(t->esq);
-    Nos_Uma_Subarvores(t->dir);
-}
-
-void Exibir_folhas(Arvore t){
-    if (t == NULL)
-        return;
-
-    if (t->esq == NULL && t->dir == NULL)
-        printf("%c ", t->dado);
-
-    Exibir_folhas(t->esq);
-    Exibir_folhas(t->dir);
-}
-
+void Uniao(Arvore *R, Arvore B);
+void Intersecao(Arvore *R, Arvore A, Arvore B);
+void ValoresEntre(Arvore t, char a, char b);
+void Armazenar(Arvore t, char v[], int *i);
+char Mediana(Arvore t);
+Arvore Remover(Arvore t, char d);
+int Altura(Arvore t);
+void ImprimirNiveis(Arvore t);
 
 #endif
